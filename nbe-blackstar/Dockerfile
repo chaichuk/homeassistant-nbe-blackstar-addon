@@ -3,14 +3,14 @@ FROM ${BUILD_FROM}
 
 RUN apk add --no-cache bash jq curl python3 py3-pip
 
-# venv для pip (PEP 668)
+# venv для залежностей (обхід PEP 668)
 RUN python3 -m venv /opt/venv \
- && /opt/venv/bin/pip install --no-cache-dir paho-mqtt pyduro
+ && /opt/venv/bin/pip install --no-cache-dir paho-mqtt pyduro requests
 
 ENV PATH="/opt/venv/bin:${PATH}"
 WORKDIR /app
 
-# наш автономний main.py усередину образу
+# автономний скрипт
 COPY main.py /app/main.py
 
 # запусковий скрипт
