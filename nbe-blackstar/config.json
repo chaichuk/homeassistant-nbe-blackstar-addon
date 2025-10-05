@@ -1,8 +1,8 @@
 {
   "name": "NBE Blackstar Local (MQTT)",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "slug": "nbe-blackstar",
-  "description": "Publishes NBE (Blackstar/RTB/Scotte) sensors and controls to Home Assistant via MQTT Discovery using local UDP API.",
+  "description": "Publishes NBE data to Home Assistant via MQTT Discovery from local UDP API or StokerCloud (cloud).",
   "arch": ["amd64", "aarch64", "armv7"],
   "startup": "services",
   "boot": "auto",
@@ -14,9 +14,12 @@
   "panel_icon": "mdi:fire",
   "services": ["mqtt:need"],
   "options": {
-    "nbe_host": "",
+    "mode": "local",                 // "local" або "cloud"
+    "nbe_host": "",                  // для local
     "nbe_serial": "",
-    "nbe_password": "",
+    "nbe_password": "",              // PIN для local; для cloud можна лишати порожнім
+    "cloud_username": "",            // email від StokerCloud (для cloud)
+    "cloud_password": "",            // пароль від StokerCloud (для cloud)
     "mqtt_host": "core-mosquitto",
     "mqtt_port": 1883,
     "mqtt_user": "homeassistant",
@@ -25,9 +28,12 @@
     "interval": 15
   },
   "schema": {
-    "nbe_host": "str",
+    "mode": "str?",
+    "nbe_host": "str?",
     "nbe_serial": "str",
-    "nbe_password": "password",
+    "nbe_password": "password?",
+    "cloud_username": "str?",
+    "cloud_password": "password?",
     "mqtt_host": "str?",
     "mqtt_port": "int?",
     "mqtt_user": "str?",
