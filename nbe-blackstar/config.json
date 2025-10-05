@@ -1,6 +1,6 @@
 {
   "name": "NBE Blackstar Local (MQTT)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "slug": "nbe_blackstar_mqtt",
   "description": "Publishes NBE (Blackstar/RTB/Scotte) sensors and controls to Home Assistant via MQTT Discovery using local UDP API.",
   "arch": [
