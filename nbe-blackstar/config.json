@@ -43,6 +43,4 @@
     "mqtt_password": "password?",
     "mqtt_prefix": "str?",
     "interval": "int?"
-  },
-  "image": "ghcr.io/chaichuk/nbe-blackstar-addon-{arch}"
 }
