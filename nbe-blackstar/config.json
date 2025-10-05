@@ -1,27 +1,18 @@
 {
   "name": "NBE Blackstar Local (MQTT)",
-  "version": "0.1.2",
-  "slug": "nbe_blackstar",
+  "version": "0.1.4",
+  "slug": "nbe-blackstar",
   "description": "Publishes NBE (Blackstar/RTB/Scotte) sensors and controls to Home Assistant via MQTT Discovery using local UDP API.",
-  "arch": [
-    "amd64",
-    "aarch64",
-    "armv7"
-  ],
+  "arch": ["amd64", "aarch64", "armv7"],
   "startup": "services",
   "boot": "auto",
   "init": false,
   "homeassistant": "2024.12.0",
-  "map": [
-    "config",
-    "ssl"
-  ],
+  "map": ["config", "ssl"],
   "host_network": true,
   "ingress": false,
   "panel_icon": "mdi:fire",
-  "services": [
-    "mqtt:need"
-  ],
+  "services": ["mqtt:need"],
   "options": {
     "nbe_host": "",
     "nbe_serial": "",
@@ -43,4 +34,5 @@
     "mqtt_password": "password?",
     "mqtt_prefix": "str?",
     "interval": "int?"
+  }
 }
