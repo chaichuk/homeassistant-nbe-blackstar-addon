@@ -7,7 +7,6 @@ if [ ! -f "$OPTS_FILE" ]; then
   exit 1
 fi
 
-# Читаємо опції
 NBE_HOST=$(jq -r '.nbe_host // ""' "$OPTS_FILE")
 NBE_SERIAL=$(jq -r '.nbe_serial // ""' "$OPTS_FILE")
 NBE_PASSWORD=$(jq -r '.nbe_password // ""' "$OPTS_FILE")
@@ -18,14 +17,11 @@ MQTT_PASSWORD=$(jq -r '.mqtt_password // ""' "$OPTS_FILE")
 MQTT_PREFIX=$(jq -r '.mqtt_prefix // "homeassistant"' "$OPTS_FILE")
 INTERVAL=$(jq -r '.interval // 15' "$OPTS_FILE")
 
-# Перевірка обов'язкових полів
 if [ -z "$NBE_HOST" ] || [ -z "$NBE_SERIAL" ] || [ -z "$NBE_PASSWORD" ]; then
   echo "Please configure nbe_host, nbe_serial and nbe_password in add-on options." >&2
   exit 1
 fi
 
-# Підготуємо конфіг для сервісу
-mkdir -p /app
 cat > /app/config.json <<EOF
 {
   "nbe_host": "${NBE_HOST}",
@@ -40,7 +36,6 @@ cat > /app/config.json <<EOF
 }
 EOF
 
-# Дістаємо main.py з офіційного репозиторію (якщо не покладений у образ)
 if [ ! -f /app/main.py ]; then
   echo "[nbe-blackstar] Downloading upstream main.py ..."
   curl -fsSL -o /app/main.py \
